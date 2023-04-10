@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+  category page
+{% endblock title %}
+
+{% block content %}
+
+
+<section id="category" class="my-3 ">
+    <h5 class="display-5 text-center"> {{cat.title}} </h5>
+    <div class="container">
+        <div class="row gy-2">          
+            {% if category %}
+                {% for item in category %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{item.image.url}}" height="250" alt="{{item.title}}" class="card-img">
+                        <h5>{{item.title}}</h5>
+                        <p class="lead"></p>
+                    </div>
+                </div>               
+                {% endfor %}              
+            {% else %}
+              <p class="lead bg-danger">no item of such</p>
+            {% endif %}
+            
+
+        </div>
+    </div>
+</section>
+
+  
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+

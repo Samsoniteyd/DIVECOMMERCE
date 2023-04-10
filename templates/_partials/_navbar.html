@@ -1,0 +1,67 @@
+
+
+<nav class="navbar navbar-expand-lg bg-success navbar-light sticky-top">
+    <div class="container">
+        <a href="" class="navbar-brand">DiveCOMMERCE</a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="dive ">
+            <span> <i class="bi bi-list"></i> </span>
+        </button>
+        <!-- search  -->
+        <div class="search w-75 py-auto">
+            <form action="{% url 'search'%}" method="get">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text"  name="search_word" class="form-control" placeholder="search......">
+                    <span class="input-group-text"> <i class="bi bi-search"></i> </span>
+                  </div>
+            </form>
+        </div>
+
+        <div class="navbar-collapse collapse " id="dive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"> <a href="{% url 'index' %}" class="nav-link text-white">Home</a> </li>
+                <li class="nav-item"> <a href="{% url 'products' %} " class="nav-link text-white">Shop</a> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">category</a>
+                    <ul class="dropdown-menu">
+                        {% for item in catloops  %}
+                          
+                        <li><a class="dropdown-item" href="{% url 'category' item.id %}"> {{item.title}} </a></li>
+                        
+                        {% endfor %}
+                    </ul>
+                  </li>
+                <li class="nav-item"> <a href="" class="nav-link text-white">About</a> </li>
+                <li class="nav-item"> <a href="" class="nav-link text-white">User</a> </li>
+
+
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Users</a>
+                    <ul class="dropdown-menu">
+                        {% if request.user.is_authenticated %}
+                        
+                        <li><a class="dropdown-item" href="{% url 'logout'%}">logout</a></li>
+                        <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashborad</a></li>
+                  
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'login' %}">login</a></li>
+                        <li><a class="dropdown-item" href=" {% url 'register' %}">Register</a></li>
+                  
+                        
+                        {% endif %}  
+                        
+                    </ul>
+                  </li> 
+                    <li class="new- item"> <a class="nav-link text-white" href="{% url 'mycart' %}" > <i class="bi bi-cart-fill"><span class="badge bg-danger">0</span></i></a>
+
+                    </li>
+
+            </ul>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+

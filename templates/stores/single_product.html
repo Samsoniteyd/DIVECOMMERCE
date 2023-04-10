@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+  single product
+{% endblock title %}
+
+{% block content %}
+<section id="product">
+    <div class="container">
+        <div class="row">
+           {% if product %}
+           <div class="col-md-6">
+                <div class="card"> 
+                    <img src="{{product.image.url}}" alt="{{product.title}}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header display-6"> {{product.title}} </div>
+                    <div class="card-body">
+                    <p class="lead"> {{product.description}} </p>
+                    <h4> &#8358; {{product.price|intcomma}} </h4>
+
+                    <div class="d-grid">
+                         <a href="{% url 'addtocart' product.id %}" class="btn btn-success">add to cart</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+           {% else %}
+             <p class="lead bg-danger">no product</p>
+           {% endif %}
+           
+        </div>
+    </div>
+</section>
+  
+{% endblock content %}
